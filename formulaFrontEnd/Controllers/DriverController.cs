@@ -55,7 +55,24 @@ namespace formulaFrontEnd.Controllers
 
             return View(raceTableList);
         }
+
+        [HttpGet("constructors/{surname}")]
+        public async Task<IActionResult> CocstructorInfo(string surname)
+        {
+            var client = _httpClientFactory.CreateClient("ergastDevApi");
+
+            var response = await client.GetAsync($"{surname}/constructors.json?limit=1000");
+
+            var parsedResponse = JObject.Parse(await response.Content.ReadAsStringAsync());
+            var anotherTest = parsedResponse.ToString();
+            var constructorTableResults = parsedResponse["MRData"]["ConstructorTable"]["Constructors"].Children();
+            var constructorTableList = constructorTableResults.Select(constructor => constructor.ToObject<Constructor>()).ToList();
+
+            return View(constructorTableList);
+
+        }
     }
+
     public class MRData
     {
         [JsonProperty("series")]
