@@ -43,7 +43,7 @@ namespace formulaFrontEnd.Controllers
         [HttpGet("races/{surname}")]
         public async Task<IActionResult> RacesInfo(string surname)
         {
-
+           
             var client = _httpClientFactory.CreateClient("ergastDevApi");
 
             var response = await client.GetAsync($"{surname}/races.json?limit=1000");

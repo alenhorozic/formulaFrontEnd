@@ -12,6 +12,5 @@ namespace formulaFrontEnd.ViewModels
             public string name { get; set; }
             public string nationality { get; set; }
        
-
     }
 }
