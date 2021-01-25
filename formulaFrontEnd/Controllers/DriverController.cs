@@ -71,6 +71,23 @@ namespace formulaFrontEnd.Controllers
             return View(constructorTableList);
 
         }
+
+        [HttpGet("Coment/{id}")]
+        public async Task<IActionResult> Coment(int id)
+        {
+            var coments = new List<Coment>();
+            var client = _httpClientFactory.CreateClient("formulaAPI");
+
+            var response = await client.GetAsync($"api/coment/{id}");
+            if (response.IsSuccessStatusCode)
+            {
+                var content = await response.Content.ReadAsStringAsync();
+
+                coments = JsonConvert.DeserializeObject<List<Coment>>(content);
+            }
+
+            return View(coments);
+        }
     }
 
     public class MRData

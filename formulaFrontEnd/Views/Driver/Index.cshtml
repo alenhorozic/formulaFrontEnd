@@ -9,8 +9,8 @@
 <p>
     <a asp-action="Create">Create New</a>
 </p>
-<table class="table">
-    <thead>
+<table class="table bg-light table-striped">
+    <thead class="table-dark">
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.driverId)
@@ -21,7 +21,7 @@
             <th>
                 @Html.DisplayNameFor(model => model.surname)
             </th>
-            <th></th>
+            <th>moreInfo</th>
         </tr>
     </thead>
     <tbody>
@@ -38,8 +38,8 @@
             </td>
             <td>
                 @Html.ActionLink("Races-Info", "RacesInfo", new {  surname = item.surname  }) |
-                @Html.ActionLink("Constructors", "CocstructorInfo", new { surname = item.surname }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                @Html.ActionLink("Constructors", "CocstructorInfo", new { surname = item.surname })|
+                <a asp-controller="Driver" asp-action="Coment" asp-route-id="@item.driverId">Coments</a>
             </td>
         </tr>
 }
