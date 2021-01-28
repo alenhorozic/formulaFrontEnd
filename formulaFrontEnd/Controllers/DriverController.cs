@@ -30,7 +30,7 @@ namespace formulaFrontEnd.Controllers
             var client = _httpClientFactory.CreateClient("formulaAPI");
         
             var response = await client.GetAsync("api/driver/getall");
-            if (response.IsSuccessStatusCode)
+            if (response.IsSuccessStatusCode)                           //exeption using if() statment
             {
                 var content = await response.Content.ReadAsStringAsync();
 
